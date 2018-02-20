@@ -1,0 +1,35 @@
+buildscript {
+    ext.kotlinVersion = '1.2.10'
+    ext.dokkaVersion = '0.9.15'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokkaVersion}"
+    }
+}
+
+apply plugin: 'kotlin'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+ext {
+    gdxVersion = '1.9.7'
+    ktxVersion = "$gdxVersion-b1"
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+    compile "io.github.libktx:ktx-app:$ktxVersion"
+
+    testCompile 'junit:junit:4.12'
+}
+
