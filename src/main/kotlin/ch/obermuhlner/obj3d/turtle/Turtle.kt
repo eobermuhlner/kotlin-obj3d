@@ -1,5 +1,17 @@
 package ch.obermuhlner.obj3d.turtle
 
+import com.badlogic.gdx.graphics.Color
+import com.badlogic.gdx.graphics.GL20
+import com.badlogic.gdx.graphics.VertexAttributes
+import com.badlogic.gdx.graphics.g3d.Material
+import com.badlogic.gdx.graphics.g3d.Model
+import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute
+import com.badlogic.gdx.graphics.g3d.utils.MeshPartBuilder
+import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder
+import com.badlogic.gdx.math.MathUtils
+import com.badlogic.gdx.math.Vector2
+import com.badlogic.gdx.math.Vector3
+
 class Turtle(
         var center: Vector3 = Vector3(0f, 0f, 0f),
         var upDirection: Vector3 = Vector3.Z,
