@@ -9,11 +9,15 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokkaVersion}"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion"
     }
 }
 
 apply plugin: 'kotlin'
+
+group = 'ch.obermuhlner'
+version = '0.0.1'
+archivesBaseName = 'kotlin-obj3d'
 
 repositories {
     mavenCentral()
@@ -31,5 +35,9 @@ dependencies {
     compile "io.github.libktx:ktx-app:$ktxVersion"
 
     testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-core:2.2.7"
+    testCompile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+    testCompile "com.badlogicgames.gdx:gdx:$gdxVersion"
+    testCompile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
 }
 
