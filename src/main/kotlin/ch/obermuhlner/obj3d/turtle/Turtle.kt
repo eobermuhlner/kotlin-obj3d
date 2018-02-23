@@ -33,15 +33,15 @@ class Turtle(
         return MathUtils.atan2(Vector3(vector1).crs(vector2).dot(planeNormal), Vector3(vector1).dot(vector2)) * MathUtils.radiansToDegrees
     }
 
-    fun startRegularPolygon(cornerCount: Int, radius: Float, material: Material) {
-        startRegularPolygon(cornerCount, { _ -> radius}, { _ -> material})
+    fun regularPolygon(cornerCount: Int, radius: Float, material: Material) {
+        regularPolygon(cornerCount, { _ -> radius}, { _ -> material})
     }
 
-    fun startRegularPolygon(cornerCount: Int, radiusFunc: (Int) -> Float, materialFunc: (Int) -> Material) {
-        startPolygon(cornerCount, { index -> 360f / cornerCount * index}, radiusFunc, materialFunc)
+    fun regularPolygon(cornerCount: Int, radiusFunc: (Int) -> Float, materialFunc: (Int) -> Material) {
+        polygon(cornerCount, { index -> 360f / cornerCount * index}, radiusFunc, materialFunc)
     }
 
-    fun startPolygon(cornerCount: Int, angleFunc: (Int) -> Float, radiusFunc: (Int) -> Float, materialFunc: (Int) -> Material) {
+    fun polygon(cornerCount: Int, angleFunc: (Int) -> Float, radiusFunc: (Int) -> Float, materialFunc: (Int) -> Material) {
         corners.clear()
         sides.clear()
 
@@ -51,7 +51,7 @@ class Turtle(
         }
     }
 
-    private fun startPolygon(materialFunc: (Int) -> Material, vararg cornerPoints: MeshPartBuilder.VertexInfo) {
+    private fun polygon(materialFunc: (Int) -> Material, vararg cornerPoints: MeshPartBuilder.VertexInfo) {
         corners.clear()
         sides.clear()
 
@@ -201,7 +201,7 @@ class Turtle(
                     subTurtle.forwardDirection = normal
                     subTurtle.builder = builder
                     subTurtle.uvScale = uvScale
-                    subTurtle.startPolygon({ _ -> side.material}, corner1, corner2, corner3, corner4)
+                    subTurtle.polygon({ _ -> side.material}, corner1, corner2, corner3, corner4)
                     subTurtle.smooth = side.smooth
                 } else {
                     if (!side.smooth) {
@@ -232,7 +232,7 @@ class Turtle(
             3 -> part.triangle(lastCornerPoints[0], lastCornerPoints[1], lastCornerPoints[2])
             4 -> part.rect(lastCornerPoints[0], lastCornerPoints[1], lastCornerPoints[2], lastCornerPoints[3])
             else -> {
-                // FIXME add startPolygon
+                // FIXME add polygon
             }
         }
     }
