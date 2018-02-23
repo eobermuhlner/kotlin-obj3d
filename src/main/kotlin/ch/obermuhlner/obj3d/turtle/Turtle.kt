@@ -41,6 +41,18 @@ class Turtle(
         polygon(cornerCount, { index -> 360f / cornerCount * index}, radiusFunc, materialFunc)
     }
 
+    fun polygon(material: Material, vararg corners: Vector2) {
+        polygon({_ -> material}, *corners)
+    }
+
+    fun polygon(materialFunc: (Int) -> Material, vararg corners: Vector2) {
+        polygon(corners.size, {index -> corners[index]}, materialFunc)
+    }
+
+    fun polygon(cornerCount: Int, vector2Func: (Int) -> Vector2, materialFunc: (Int) -> Material) {
+        polygon(cornerCount, {index -> vector2Func(index).angle()}, {index -> vector2Func(index).len()}, materialFunc)
+    }
+
     fun polygon(cornerCount: Int, angleFunc: (Int) -> Float, radiusFunc: (Int) -> Float, materialFunc: (Int) -> Material) {
         corners.clear()
         sides.clear()
